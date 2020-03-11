@@ -1,4 +1,4 @@
-package cn;
+package cn.servlet;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
