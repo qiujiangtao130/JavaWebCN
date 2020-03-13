@@ -1,6 +1,7 @@
 package CN;
 
 import Domain.BOOK;
+import Domain.Emp;
 import Utils.JDBCUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -21,11 +22,17 @@ public class Demo1 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //构建JDBCtemplate对象
-       List<BOOK> list= jdbcTemplate.query("select*from book", new BeanPropertyRowMapper<>(BOOK.class));
-        for (BOOK b: list
+//       List<BOOK> list= jdbcTemplate.query("select*from book", new BeanPropertyRowMapper<>(BOOK.class));
+//        for (BOOK b: list
+//             ) {
+//         System.out.println(b.toString());
+//
+//        }
+        //访问emp
+        List<Emp> list = jdbcTemplate.query("select*from emp",new BeanPropertyRowMapper<>(Emp.class));
+        for (Emp e: list
              ) {
-         System.out.println(b.toString());
-
+            System.out.println(e.toString());
         }
     }
 }

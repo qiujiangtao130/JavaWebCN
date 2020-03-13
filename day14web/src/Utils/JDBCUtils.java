@@ -17,20 +17,51 @@ public class JDBCUtils {
 
     //1.定义成员变量 DataSource
     private static DataSource ds ;
-
     static{
+       Properties pro=new Properties();
         try {
-            //1.加载配置文件
-            Properties pro = new Properties();
             pro.load(JDBCUtils.class.getClassLoader().getResourceAsStream("druid.properties"));
-            //2.获取DataSource
-            ds = DruidDataSourceFactory.createDataSource(pro);
+            //初始化连接池 druidDataSourceFactory
+            ds=DruidDataSourceFactory.createDataSource(pro);
+
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+//    static{
+//        try {
+//            //1.加载配置文件
+//            Properties pro = new Properties();
+//            pro.load(JDBCUtils.class.getClassLoader().getResourceAsStream("druid.properties"));
+//            //2.获取DataSource
+//            ds = DruidDataSourceFactory.createDataSource(pro);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     /**
      * 获取连接

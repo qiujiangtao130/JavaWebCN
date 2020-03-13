@@ -12,22 +12,27 @@ public class ReqDemo1 extends HttpServlet {
     //演示request
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-      String method= req.getMethod();
+
+        String method= req.getMethod();
         System.out.println(method+", ");
+
         String  contextPath=req.getContextPath();
         System.out.println(contextPath+", ");
+
         String servletPath=req.getServletPath();
         System.out.println(servletPath+", ");
 
         String queryString = req.getQueryString(); //请求参数
         System.out.println(queryString+", ");
-        //uri > url 
+        //uri > url  权限校验的时候要知道 访问的资源是什么
         String requestURI = req.getRequestURI();
         System.out.println(requestURI+", ");
+
         String protocol = req.getProtocol();
         System.out.println(protocol+", ");
         String remoteAddr = req.getRemoteAddr();
         System.out.println(remoteAddr+", ");
+
     }
 
     @Override
