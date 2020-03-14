@@ -12,9 +12,12 @@ import java.io.IOException;
 public class csTest1 extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext context= request.getServletContext();
+        String filename="a.jpg";
+        ClassLoader cl = this.getClass().getClassLoader();
 
-
-
+        System.out.println(context.getMimeType(filename));
+        System.out.println("sc---"+context.getRealPath("/WEB-INF/classes/ServletContext/a.txt"));
+        System.out.println("cl----"+cl.getResource("/ServletContext/a.txt").getPath());
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

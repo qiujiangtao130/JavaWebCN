@@ -11,6 +11,6 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+  <a href="/day16web/downloadServlet?filename=微信截图2.jpg">图片1</a>
   </body>
 </html>
