@@ -32,14 +32,25 @@
         td, th {
             text-align: center;
         }
-        .btn-primary{
+
+        .btn-primary {
             float: right;
             margin: 5px;
         }
-        .inner-table{
+
+        .inner-table {
             float: left;
         }
     </style>
+    <script>
+        function deleteUser(id) {
+            if (confirm("确定删除吗?")) {
+
+                location.href = "${pageContext.request.contextPath}/deleteUserServlet?id="+id;
+
+            }
+        }
+    </script>
 </head>
 <body>
 <div class="container">
@@ -62,9 +73,9 @@
         </form>
     </div>
     <div>
-        <a class="btn btn-primary" href="add.html">添加联系人</a>
-        <a class="btn btn-primary" href="add.html">删除选中</a>
-   </div>
+        <a class="btn btn-primary" href="${pageContext.request.contextPath}/add.jsp">添加联系人</a>
+        <a class="btn btn-primary" href="${pageContext.request.contextPath}/add.jsp">删除选中</a>
+    </div>
     <table border="1" class="table table-bordered table-hover">
         <tr class="success">
             <th><input type="checkbox"></th>
@@ -79,7 +90,7 @@
         </tr>
         <c:forEach items="${users}" var="user" varStatus="s">
             <tr>
-                <th><input type="checkbox"></th>
+                <td><input type="checkbox" name="uid" value="${user.id}"></td>
                 <td>${s.count}</td>
                 <td>${user.name}</td>
                 <td>${user.gender}</td>
@@ -87,7 +98,8 @@
                 <td>${user.address}</td>
                 <td>${user.qq}</td>
                 <td>${user.email}</td>
-                <td><a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;<a class="btn btn-default btn-sm" href="">删除</a></td>
+                <td><a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;
+                    <a class="btn btn-default btn-sm" href="javascript:deleteUser(${user.id})">删除</a></td>
             </tr>
         </c:forEach>
     </table>

@@ -9,4 +9,8 @@ public interface UserDao {
     public List<User> findAll();
 
     public User login(String username, String password);
+
+    public void addUser(User user);
+
+    public void deleteUser(int i);
 }

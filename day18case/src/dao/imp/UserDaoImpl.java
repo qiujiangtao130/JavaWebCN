@@ -33,5 +33,17 @@ public class UserDaoImpl implements UserDao {
 
     }
 
+    @Override
+    public void addUser(User user) {
+        String sql = "insert into user values(null,?,?,?,?,?,?,null,null)";
+        jdbcTemplate.update(sql,user.getName(),user.getGender(),user.getAge(),user.getAddress(), user.getQq(), user.getEmail());
+    }
+
+    @Override
+    public void deleteUser(int i) {
+        String sql = "delete from user where id = ?";
+        jdbcTemplate.update(sql,i);
+    }
+
 
 }
