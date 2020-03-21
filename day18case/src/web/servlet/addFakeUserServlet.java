@@ -10,22 +10,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
-@WebServlet("/userListServlet")
-public class UserListServlet extends HttpServlet {
+
+
+@WebServlet("/addFakeUserServlet")
+public class addFakeUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserService userService=new UserServiceImpl();
-        //获得users
-        List<User> users = userService.findAll();
-//        for (User u: users
-//             ) {
-//            System.out.println(u.getName()+" "+u.getEmail());
-//        }
-        //传回request 域
-        request.setAttribute("users",users);
-        //转发到list.jsp
-        request.getRequestDispatcher("/list.jsp").forward(request,response);
+        request.setCharacterEncoding("utf-8");
+        for (int i = 0; i <10 ; i++) {
+            User user =new User();
+            user.setName("机器人"+i);
+            user.setAge(10+i);
+            user.setAddress("上海");
+            user.setGender("男");
+            user.setQq("000000"+i);
+            user.setEmail(i+"asdfasdf@123.com");
+            UserService userService= new UserServiceImpl();
+            userService.addUser(user);
+        }
+        response.sendRedirect(request.getContextPath()+"/userListServlet");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

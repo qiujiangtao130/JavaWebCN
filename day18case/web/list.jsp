@@ -71,6 +71,9 @@
                     }
                 }
             }
+            document.getElementById("addFakeUser").onclick=function () {
+                location.href = "${pageContext.request.contextPath}/addFakeUserServlet";
+            }
         }
     </script>
 </head>
@@ -97,6 +100,7 @@
     <div>
         <a class="btn btn-primary" href="${pageContext.request.contextPath}/add.jsp">添加联系人</a>
         <a class="btn btn-primary" href="javascript:void(0);" id="delSelected">删除选中</a>
+        <a class="btn btn-primary" href="javascript:void(0);" id="addFakeUser">添加伪信息</a>
     </div>
     <form id="form" action="${pageContext.request.contextPath}/delSelectedServlet" method="post">
         <table border="1" class="table table-bordered table-hover">

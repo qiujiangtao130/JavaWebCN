@@ -25,9 +25,9 @@ public class UserServiceImpl implements UserService {
 //        if(user.getName()==null || !user.getName().matches("^[a-zA-Z0-9_-]{4,16}$")){
 //            return false;
 //        }
-        if(user.getEmail() == null || !user.getEmail().matches("^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$")){
-            return false;
-        }
+//        if(user.getEmail() == null || !user.getEmail().matches("^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$")){
+//            return false;
+//        }
 
 
         userDao.addUser(user);
