@@ -14,4 +14,8 @@ public interface UserService {
     public boolean addUser(User user);
 
     public void deleteUser(String id);
+
+    public User findUserById(Integer id);
+
+    void updateUser(User user);
 }

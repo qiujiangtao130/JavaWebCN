@@ -2,6 +2,7 @@ package dao.imp;
 
 import dao.UserDao;
 import domain.User;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import utils.JDBCUtils;
@@ -43,6 +44,25 @@ public class UserDaoImpl implements UserDao {
     public void deleteUser(int i) {
         String sql = "delete from user where id = ?";
         jdbcTemplate.update(sql,i);
+    }
+
+    @Override
+    public User findUserById(Integer id) {
+        String sql = "select * from user where id = ?";
+        User user=new User();
+        try{
+            user = jdbcTemplate.queryForObject(sql,new BeanPropertyRowMapper<User>(User.class),id);
+            //System.out.println("dao:"+user.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    @Override
+    public void updateUser(User user) {
+        String sql = "update user set name = ?,gender = ? ,age = ? , address = ? , qq = ?, email = ? where id = ?";
+        jdbcTemplate.update(sql, user.getName(), user.getGender(), user.getAge(), user.getAddress(), user.getQq(), user.getEmail(), user.getId());
     }
 
 

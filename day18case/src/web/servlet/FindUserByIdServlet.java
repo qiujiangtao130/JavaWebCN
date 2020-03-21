@@ -10,16 +10,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
-@WebServlet("/deleteUserServlet")
-public class DeleteUserServlet extends HttpServlet {
+@WebServlet("/findUserByIdServlet")
+public class FindUserByIdServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserService userService= new UserServiceImpl();
-        String id = request.getParameter("id");
-        //System.out.println(id);
-        userService.deleteUser(id);
-        response.sendRedirect(request.getContextPath()+"/userListServlet");
+
+        request.setCharacterEncoding("utf-8");
+        Integer id = Integer.parseInt(request.getParameter("id"));
+        UserService us = new UserServiceImpl();
+        User user=us.findUserById(id);
+        //System.out.println("servlet:"+user.toString());
+        request.setAttribute("user", user);
+        request.getRequestDispatcher("/update.jsp").forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

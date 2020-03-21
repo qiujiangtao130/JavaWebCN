@@ -49,5 +49,23 @@ public class UserServiceImpl implements UserService {
         userDao.deleteUser(i);
     }
 
+    @Override
+    public User findUserById(Integer id) {
+        if(id==null || id<0){
+            return null;
+        }
+        return userDao.findUserById(id);
+
+    }
+
+    @Override
+    public void updateUser(User user) {
+        //姓名不用判断, 判断 qq号,email
+        if(user.getEmail() == null || !user.getEmail().matches("^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$")){
+            return;
+        }
+        userDao.updateUser(user);
+    }
+
 
 }
