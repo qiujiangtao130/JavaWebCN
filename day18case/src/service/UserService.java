@@ -18,4 +18,6 @@ public interface UserService {
     public User findUserById(Integer id);
 
     void updateUser(User user);
+
+    void delSelectedUser(String[] ids);
 }
