@@ -33,7 +33,7 @@ public class AddUserServlet extends HttpServlet {
             e.printStackTrace();
         }
         boolean b = userService.addUser(user);
-        response.sendRedirect(request.getContextPath()+"/userListServlet");
+
         //添加成功则跳转回listServlet
         if(b){
             response.sendRedirect(request.getContextPath()+"/userListServlet");

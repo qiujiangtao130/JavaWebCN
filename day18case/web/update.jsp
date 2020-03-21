@@ -49,7 +49,7 @@
         <div class="form-group">
             <label for="address">籍贯：</label>
             <select name="address" id="address" class="form-control" >
-                <option value="陕西"<c:if test="${user.address =='陕西'}">selected</c:if>> 陕西</option>
+                <option value="陕西"<c:if test="${user.address =='陕西'}">selected</c:if>>陕西</option>
                 <option value="北京"<c:if test="${user.address =='北京'}">selected</c:if>>北京</option>
                 <option value="上海"<c:if test="${user.address =='上海'}">selected</c:if>>上海</option>
             </select>
