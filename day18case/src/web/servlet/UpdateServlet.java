@@ -41,7 +41,7 @@ public class UpdateServlet extends HttpServlet {
         }
         UserService userService=new UserServiceImpl();
         userService.updateUser(user);
-        response.sendRedirect(request.getContextPath()+"/userListServlet");
+        response.sendRedirect(request.getContextPath()+"/findUserByPageServlet");
 
 
     }

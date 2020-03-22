@@ -2,6 +2,7 @@ package service.impl;
 
 import dao.UserDao;
 import dao.imp.UserDaoImpl;
+import domain.PageBean;
 import domain.User;
 import service.UserService;
 
@@ -71,6 +72,29 @@ public class UserServiceImpl implements UserService {
              ) {
             userDao.deleteUser(Integer.parseInt(s));
         }
+    }
+
+    @Override
+    public PageBean findUserByPage(int currentPage, int rows) {
+        PageBean<User> pb = new PageBean<>();
+        pb.setCurrentPage(currentPage);
+        pb.setRows(rows);
+        int totalCount=userDao.findTotalCount();
+        pb.setTotalCount(totalCount);
+        //每页开头
+        int start=(currentPage-1)*rows;
+        List<User> list=userDao.findByPage(start,rows);
+        pb.setList(list);
+        //总页码
+        int totalPage = totalCount%rows  == 0? totalCount/rows :totalCount/rows+1;
+        pb.setTotalPage(totalPage);
+        return pb;
+    }
+
+    @Override
+    public int findTotalPage(int rows) {
+
+        return userDao.findTotalCount()%rows==0?userDao.findTotalCount()/rows :userDao.findTotalCount()/rows+1;
     }
 
 

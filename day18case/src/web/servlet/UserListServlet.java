@@ -1,5 +1,6 @@
 package web.servlet;
 
+import domain.PageBean;
 import domain.User;
 import service.UserService;
 import service.impl.UserServiceImpl;
@@ -23,7 +24,9 @@ public class UserListServlet extends HttpServlet {
 //            System.out.println(u.getName()+" "+u.getEmail());
 //        }
         //传回request 域
-        request.setAttribute("users",users);
+        PageBean pb = new PageBean();
+        pb.setList(users);
+        request.setAttribute("pb",pb);
         //转发到list.jsp
         request.getRequestDispatcher("/list.jsp").forward(request,response);
     }

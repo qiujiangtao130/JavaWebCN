@@ -65,7 +65,18 @@ public class UserDaoImpl implements UserDao {
         jdbcTemplate.update(sql, user.getName(), user.getGender(), user.getAge(), user.getAddress(), user.getQq(), user.getEmail(), user.getId());
     }
 
+    @Override
+    public int findTotalCount() {
+        String sql ="select count(*) from user";
+        return jdbcTemplate.queryForObject(sql,Integer.class);
+    }
 
+    @Override
+    public List<User> findByPage(int start, int rows) {
+        String sql = "select *from user limit ?,?";
+
+        return jdbcTemplate.query(sql,new BeanPropertyRowMapper<User>(User.class),start,rows);
+    }
 
 
 }

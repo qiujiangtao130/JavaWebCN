@@ -36,7 +36,7 @@ public class AddUserServlet extends HttpServlet {
 
         //添加成功则跳转回listServlet
         if(b){
-            response.sendRedirect(request.getContextPath()+"/userListServlet");
+            response.sendRedirect(request.getContextPath()+"/findUserByPageServlet");
         }else{
             request.setAttribute("msg_add","添加失败");
             request.getRequestDispatcher("/add.jsp").forward(request,response);
