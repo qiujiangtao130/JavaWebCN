@@ -3,6 +3,7 @@ package dao;
 import domain.User;
 
 import java.util.List;
+import java.util.Map;
 
 //操作数据库的接口
 public interface UserDao {
@@ -19,7 +20,7 @@ public interface UserDao {
     void updateUser(User user);
 
 
-    int findTotalCount();
+    int findTotalCount(Map<String, String[]> condition);
 
-    List<User> findByPage(int start, int rows);
+    List<User> findByPage(int start, int rows, Map<String, String[]> condition);
 }

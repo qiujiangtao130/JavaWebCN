@@ -4,11 +4,11 @@ import domain.PageBean;
 import domain.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserService {
     //返回所有用户信息
     public List<User> findAll();
-
 
     public User login(User user);
 
@@ -22,7 +22,7 @@ public interface UserService {
 
     void delSelectedUser(String[] ids);
 
-    PageBean findUserByPage(int currentPage, int rows);
+    PageBean findUserByPage(int currentPage, int rows, Map<String, String[]> condition);
 
-    int findTotalPage(int rows);
+
 }

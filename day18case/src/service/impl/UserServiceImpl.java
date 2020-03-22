@@ -7,9 +7,11 @@ import domain.User;
 import service.UserService;
 
 import java.util.List;
+import java.util.Map;
 
 public class UserServiceImpl implements UserService {
-    private  UserDao userDao=new UserDaoImpl();
+    private UserDao userDao = new UserDaoImpl();
+
     @Override
     public List<User> findAll() {
         return userDao.findAll();
@@ -17,7 +19,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User login(User user) {
-        return userDao.login(user.getUsername(),user.getPassword());
+        return userDao.login(user.getUsername(), user.getPassword());
     }
 
     @Override
@@ -38,11 +40,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(String id) {
-        if(""==id ||id==null){
+        if ("" == id || id == null) {
             return;
         }
-        int i =Integer.parseInt(id);
-        if(i<0){
+        int i = Integer.parseInt(id);
+        if (i < 0) {
             return;
         }
         userDao.deleteUser(i);
@@ -50,7 +52,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findUserById(Integer id) {
-        if(id==null || id<0){
+        if (id == null || id < 0) {
             return null;
         }
         return userDao.findUserById(id);
@@ -60,7 +62,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUser(User user) {
         //姓名不用判断, 判断 qq号,email
-        if(user.getEmail() == null || !user.getEmail().matches("^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$")){
+        if (user.getEmail() == null || !user.getEmail().matches("^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$")) {
             return;
         }
         userDao.updateUser(user);
@@ -68,33 +70,29 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delSelectedUser(String[] ids) {
-        for (String s: ids
-             ) {
+        for (String s : ids
+        ) {
             userDao.deleteUser(Integer.parseInt(s));
         }
     }
 
     @Override
-    public PageBean findUserByPage(int currentPage, int rows) {
+    public PageBean findUserByPage(int currentPage, int rows, Map<String, String[]> condition) {
         PageBean<User> pb = new PageBean<>();
         pb.setCurrentPage(currentPage);
         pb.setRows(rows);
-        int totalCount=userDao.findTotalCount();
+        int totalCount = userDao.findTotalCount(condition);
+        // System.out.println("totalCount: "+ totalCount);
         pb.setTotalCount(totalCount);
         //每页开头
-        int start=(currentPage-1)*rows;
-        List<User> list=userDao.findByPage(start,rows);
+        int start = (currentPage - 1) * rows;
+        List<User> list = userDao.findByPage(start, rows, condition);
+        //System.out.println("list size:"+list.size());
         pb.setList(list);
         //总页码
-        int totalPage = totalCount%rows  == 0? totalCount/rows :totalCount/rows+1;
+        int totalPage = totalCount % rows == 0 ? totalCount / rows : totalCount / rows + 1;
         pb.setTotalPage(totalPage);
         return pb;
-    }
-
-    @Override
-    public int findTotalPage(int rows) {
-
-        return userDao.findTotalCount()%rows==0?userDao.findTotalCount()/rows :userDao.findTotalCount()/rows+1;
     }
 
 

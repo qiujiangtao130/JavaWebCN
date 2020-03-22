@@ -15,11 +15,11 @@ import java.util.List;
 @WebServlet("/deleteUserServlet")
 public class DeleteUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserService userService= new UserServiceImpl();
+        UserService userService = new UserServiceImpl();
         String id = request.getParameter("id");
         //System.out.println(id);
         userService.deleteUser(id);
-        response.sendRedirect(request.getContextPath()+"/findUserByPageServlet");
+        response.sendRedirect(request.getContextPath() + "/findUserByPageServlet");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

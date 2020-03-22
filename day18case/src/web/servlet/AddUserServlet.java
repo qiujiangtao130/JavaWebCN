@@ -15,17 +15,16 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 
-
 @WebServlet("/addUserServlet")
 public class AddUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         //System.out.println("addUserServlet");
-        User user=new User();
+        User user = new User();
         Map<String, String[]> userMap = request.getParameterMap();
         UserService userService = new UserServiceImpl();
-        try{
-            BeanUtils.populate(user,userMap);
+        try {
+            BeanUtils.populate(user, userMap);
             //System.out.println(user.getName());
         } catch (IllegalAccessException e) {
             e.printStackTrace();
@@ -35,11 +34,11 @@ public class AddUserServlet extends HttpServlet {
         boolean b = userService.addUser(user);
 
         //添加成功则跳转回listServlet
-        if(b){
-            response.sendRedirect(request.getContextPath()+"/findUserByPageServlet");
-        }else{
-            request.setAttribute("msg_add","添加失败");
-            request.getRequestDispatcher("/add.jsp").forward(request,response);
+        if (b) {
+            response.sendRedirect(request.getContextPath() + "/findUserByPageServlet");
+        } else {
+            request.setAttribute("msg_add", "添加失败");
+            request.getRequestDispatcher("/add.jsp").forward(request, response);
         }
     }
 

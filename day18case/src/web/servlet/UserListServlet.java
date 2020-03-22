@@ -16,7 +16,7 @@ import java.util.List;
 @WebServlet("/userListServlet")
 public class UserListServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserService userService=new UserServiceImpl();
+        UserService userService = new UserServiceImpl();
         //获得users
         List<User> users = userService.findAll();
 //        for (User u: users
@@ -26,9 +26,9 @@ public class UserListServlet extends HttpServlet {
         //传回request 域
         PageBean pb = new PageBean();
         pb.setList(users);
-        request.setAttribute("pb",pb);
+        request.setAttribute("pb", pb);
         //转发到list.jsp
-        request.getRequestDispatcher("/list.jsp").forward(request,response);
+        request.getRequestDispatcher("/list.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

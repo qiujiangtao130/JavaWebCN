@@ -18,10 +18,10 @@ public class FindUserByIdServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         Integer id = Integer.parseInt(request.getParameter("id"));
         UserService us = new UserServiceImpl();
-        User user=us.findUserById(id);
+        User user = us.findUserById(id);
         //System.out.println("servlet:"+user.toString());
         request.setAttribute("user", user);
-        request.getRequestDispatcher("/update.jsp").forward(request,response);
+        request.getRequestDispatcher("/update.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -20,7 +20,7 @@ public class UpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         Map<String, String[]> map = request.getParameterMap();
-        User user=new User();
+        User user = new User();
 //        for (Map.Entry<String, String[]> entry: map.entrySet()
 //        ) {
 //            String key = entry.getKey();
@@ -32,16 +32,16 @@ public class UpdateServlet extends HttpServlet {
 //            }
 //            System.out.println("");
 //        }
-        try{
-            BeanUtils.populate(user,map);
+        try {
+            BeanUtils.populate(user, map);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-        UserService userService=new UserServiceImpl();
+        UserService userService = new UserServiceImpl();
         userService.updateUser(user);
-        response.sendRedirect(request.getContextPath()+"/findUserByPageServlet");
+        response.sendRedirect(request.getContextPath() + "/findUserByPageServlet");
 
 
     }

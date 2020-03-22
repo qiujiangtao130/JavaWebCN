@@ -2,11 +2,12 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+
 //分页对象
 public class PageBean<T> {
     private int totalCount;//总记录数 select count(1) from user
     private int totalPage;//tp= tc % rows
-    private  List<T> list ;//每页数据 select *user limit ? ? -a=(当前页码-1)*每页显示条数
+    private List<T> list;//每页数据 select *user limit ? ? -a=(当前页码-1)*每页显示条数
     private int currentPage;//当前页码
     private int rows;
 
