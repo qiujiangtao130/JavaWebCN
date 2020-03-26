@@ -15,7 +15,7 @@ import java.io.IOException;
 @WebServlet("/addFakeUserServlet")
 public class addFakeUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("utf-8");
+        //request.setCharacterEncoding("utf-8");
         for (int i = 0; i < 10; i++) {
             User user = new User();
             user.setName("机器人" + i);

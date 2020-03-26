@@ -16,7 +16,7 @@ import java.util.Map;
 @WebServlet("/findUserByPageServlet")
 public class FindUserByPageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("utf-8");
+        //request.setCharacterEncoding("utf-8");
         UserService userService = new UserServiceImpl();
         String currentPage = request.getParameter("currentPage");
         String rows = request.getParameter("rows");

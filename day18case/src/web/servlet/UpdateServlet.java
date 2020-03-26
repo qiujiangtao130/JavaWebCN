@@ -18,7 +18,7 @@ import java.util.Map;
 @WebServlet("/updateServlet")
 public class UpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("utf-8");
+        //request.setCharacterEncoding("utf-8");
         Map<String, String[]> map = request.getParameterMap();
         User user = new User();
 //        for (Map.Entry<String, String[]> entry: map.entrySet()

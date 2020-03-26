@@ -1,0 +1,39 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: qiuji
+  Date: 2020/3/23
+  Time: 9:31
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>$Title$</title>
+</head>
+<body>
+<a href="${pageContext.request.contextPath}/user/demo1Servlet">aaaa</a>
+<div id="my-dear-haruna-vm" class="haruna-sekai-de-ichiban-kawaii">
+    <div data-v-2bd121d2="" class="live-haruna-ctnr z-live-haruna floating ts-dot-4"
+         style="transform: translate(-427.812px, 28.7563px);">
+        <div data-v-584a60c6="" data-v-2bd121d2="" class="speaking-bubbles">
+            <div data-v-c0d9dea8="" data-v-73b342bb="" data-v-584a60c6=""
+                 class="base-bubble a-move-in-left speaking-bubble t-nowrap bubble-item" style="display: none;">
+                <div data-v-c0d9dea8="" class="content-ctnr p-relative">
+                    <div data-v-73b342bb="" class="content a-move-in-left"></div>
+                </div>
+            </div><!---->
+            <div data-v-0bb31f10="" data-v-584a60c6="" class="bubble-list bubble-gift-item">
+                <div data-v-0bb31f10=""></div>
+            </div>
+        </div>
+        <div data-v-2bd121d2="" class="haruna-ctnr none-select">
+            <canvas data-v-2bd121d2="" width="250" height="250" class="haruna-canvas"></canvas>
+            <button data-v-2bd121d2="" class="minimize-btn pointer bg-contain"></button>
+        </div>
+        <div data-v-cee07930="" data-v-2bd121d2="" role="button" class="avatar-btn pointer a-scale-in-ease model-22"
+             style="display: none;"></div>
+    </div>
+</div>
+
+</body>
+</html>

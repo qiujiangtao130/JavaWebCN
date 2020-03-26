@@ -17,7 +17,7 @@ import java.io.IOException;
 @WebServlet("/loginServlet")
 public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("utf-8");
+        //request.setCharacterEncoding("utf-8");
         String verifycode = request.getParameter("verifycode");
         HttpSession session = request.getSession();
 
