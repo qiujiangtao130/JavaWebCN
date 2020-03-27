@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-3.3.1.js"></script>
+    <script>
+        $(function () {
+
+           $("#username").blur(function (data) {
+               var username = $(this).val();
+
+                $.post("findUserServlet",{"username":username},function (data){
+                    var span = $("#s_username");
+                    if(parseInt(data)){
+
+                        span.css("color","green");
+                        span.html("用户名可用");
+                    }else{
+
+                        span.css("color","red");
+                        span.html("用户名已存在");
+                    }
+                });
+           });
+        });
+    </script>
+</head>
+<body>
+<input type="text" id="username" name="username" placeholder="请输入验证码">
+<span id="s_username"></span>
+<br>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>无标题文档</title>
+    <link href="../images/login.css" rel="stylesheet" type="text/css"/>
+    <script src="../Js/jquery-3.3.1.min.js"></script>
+    <script>
+        function updateImge() {
+            $("img").prop("src","../checkCodeServlet?tt="+new Date().getTime());
+        }
+        $(function () {
+            $("#btn").click(function () {
+                $.post("../loginServlet",
+                        {"username":$("#username").val(), "password":$("#password").val(),"checkCode":$("#checkCode").val()},function (data) {
+                        if(data.flag){
+                            //登录成功
+                            location.href="index.html";
+                        }else{
+                            //登录失败
+                            updateImge();
+                            $(".space").html(data.msg);
+                        }
+
+                    },"json");
+            });
+
+
+
+            // $("#btn").click(function () {
+            //     $.post("../loginServlet",{"username":$("#username").val(),"password":$("#password").val(),"checkCode":$("#checkCode").val()},function (data) {
+            //             if(data.flag){
+            //                 //说明登录成功
+            //                 location.href = "index.html";
+            //             }else {
+            //                 // 登录失败
+            //                 // 刷新验证码
+            //                 updateImge();
+            //                 // 显示错误信息
+            //                 $(".space").html(data.msg);
+            //             }
+            //     },"json");
+            // });
+        });
+    </script>
+</head>
+<body>
+<div id="wrap">
+    <div id="header"></div>
+    <div id="content-wrap">
+        <div class="space"></div>
+        <form action="" method="post">
+            <div class="content">
+                <div class="field"><label>账　户：</label><input class="username" name="username" id="username" type="text"/></div>
+                <div class="field"><label>密　码：</label><input class="password" name="password" id="password" type="password"/><br/></div>
+                <div class="field"><label>验证码：</label><input class="password" name="checkCode" id="checkCode" type="password"/><img src="../checkCodeServlet" onclick="updateImge()"/><br/></div>
+                <div class="btn"><input id="btn" type="button" class="login-btn" value=""/></div>
+            </div>
+        </form>
+    </div>
+    <div id="footer"></div>
+</div>
+</body>
+</html>

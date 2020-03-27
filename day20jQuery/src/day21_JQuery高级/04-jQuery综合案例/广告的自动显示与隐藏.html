@@ -38,6 +38,17 @@
         //     //获取广告div，调用隐藏方法
         //     $("#ad").hide("slow");
         // }
+        $(function () {
+            setTimeout(adShow,3000);
+            setTimeout(adHide,8000);
+
+        });
+        function adShow() {
+            $("#ad").show("slow");
+        }
+        function adHide() {
+            $("#ad").hide("slow");
+        }
 
 
 

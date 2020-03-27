@@ -42,6 +42,12 @@
 					// $("#rightName > option:selected").appendTo($("#leftName"));
 					$("#rightName>option:selected").appendTo($("#leftName"));
                 });
+                $("#leftName").dblclick(function () {
+					$("#rightName").append($("#leftName>option:selected"));
+				});
+				$("#rightName").dblclick(function () {
+					$("#leftName").append($("#rightName>option:selected"));
+				});
             });
 			
 

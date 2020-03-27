@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>修改用户</title>
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="../Css/style.css" />
+    <script type="text/javascript" src="../Js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../Js/bootstrap.js"></script>
+    <script type="text/javascript" src="../Js/ckform.js"></script>
+    <script type="text/javascript" src="../Js/common.js"></script>
+
+    <style type="text/css">
+        body {
+            background:#FFF
+        }
+    </style>
+    <script>
+        $(function () {
+            // 当这个页面加载完毕后我们要去做数据的回显
+            // 根据id去查询数据库
+            // 从浏览器地址栏上获取用户的id
+            // http://localhost:8080/jsp/edit.html?uid=12
+            var search = location.search;// ?uid=12
+            var strings = search.split("=");
+
+            // 在页面加载完毕后根据用户的id发送一个异步请求
+            // 返回的User对象我们要做数据的回显
+            $.get("../findUserByUid?uid="+strings[1],function (data) {
+                if (data.flag){
+                    // 查询成功我们要做数据的回显
+                    // 找到用户名 设置用户名的值
+                    $("input[name='username']").val(data.data.username);
+                    $("input[name='telephone']").val(data.data.telephone);
+                    $("input[name='address']").val(data.data.address);
+                    $("input[name='remake']").val(data.data.remake);
+                    $("input[name='department']").val(data.data.department);
+                    $("input[name='id']").val(data.data.id);
+                }else {
+                    //查询失败 显示错误信息
+                    $("#msg").html(data.msg);
+                }
+            },"json");
+
+            $('#backid').click(function(){
+                location.href="list.html";
+            });
+
+            $("#btn").click(function () {
+                // 获取表单中的所有数据  提交到Servlet中
+                $.post("../updateUserServlet",$("form").serialize(),function (data) {
+                    if (data.flag){
+                        // 添加成功 我们要跳转到列表页面
+                        location.href="list.html"
+                    }else {
+                        //添加失败 显示错误信息
+                        $("#msg").html(data.msg);
+                    }
+                },"json");
+            });
+        });
+    </script>
+</head>
+<body>
+<form action="../user" method="post" class="definewidth m20">
+
+    <input type="hidden" name="id" >
+    <table class="table table-bordered table-hover m10">
+        <tr>
+            <td class="tableleft">用户名称</td>
+            <td><input type="text" name="username"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">用户地址</td>
+            <td><input type="text" name="address"/></td>
+        </tr>
+        <tr>
+            <td class="tableleft">联系电话</td>
+            <td><input type="text" name="telephone" /></td>
+        </tr>
+        <tr>
+            <td class="tableleft">备注</td>
+            <td><input type="text" name="remake" /></td>
+        </tr>
+        <tr>
+            <td width="10%" class="tableleft">所属部门</td>
+            <td>
+                <input type="text" name="department"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="tableleft"></td>
+            <td>
+                <input type="button"  class="btn btn-primary" id="btn" value="修改">&nbsp;&nbsp;
+                <input type="button" class="btn btn-success" id="backid" value="返回列表">
+            </td>
+            <!--<td>
+                <button type="submit" class="btn btn-primary" type="button" >修改</button> &nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+            </td>-->
+        </tr>
+    </table>
+</form>
+</body>
+</html>

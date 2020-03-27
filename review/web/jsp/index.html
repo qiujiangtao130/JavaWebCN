@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>客户管理系统</title>
+    <link href="../images/style.css" rel="stylesheet" type="text/css"/>
+    <!--<script type="text/javascript" src="../javascript/jquery.min.js"></script>-->
+    <script src="../Js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //setMenuHeight
+            $('.menu').height($(window).height() - 51 - 27 - 26);
+            $('.sidebar').height($(window).height() - 51 - 27 - 26);
+            $('.page').height($(window).height() - 51 - 27 - 26);
+            $('.page iframe').width($(window).width() - 15 - 168);
+
+            //menu on and off
+            $('.btn').click(function () {
+                $('.menu').toggle();
+
+                if ($(".menu").is(":hidden")) {
+                    $('.page iframe').width($(window).width() - 15 + 5);
+                } else {
+                    $('.page iframe').width($(window).width() - 15 - 168);
+                }
+            });
+
+            //
+            $('.subMenu a[href="#"]').click(function () {
+                $(this).next('ul').toggle();
+                return false;
+            });
+        });
+    </script>
+
+</head>
+<body>
+<div id="wrap">
+    <div id="header">
+        <div class="logo fleft"></div>
+        <div class="nav fleft">
+            <ul>
+                <div class="nav-left fleft"></div>
+                <li class="first">我的面板</li>
+                <li>设置</li>
+                <li>模块</li>
+                <li>内容</li>
+                <li>用户</li>
+                <li>扩展</li>
+                <li>应用</li>
+                <div class="nav-right fleft"></div>
+            </ul>
+        </div>
+        <a class="logout fright" href="login.html"> </a>
+        <div class="clear"></div>
+        <div class="subnav">
+            <div class="subnavLeft fleft"></div>
+            <div class="fleft"></div>
+            <div class="subnavRight fright"></div>
+        </div>
+    </div><!--#header -->
+    <div id="content">
+        <div class="space"></div>
+        <div class="menu fleft">
+            <ul>
+                <li class="subMenuTitle">系统管理</li>
+                <li class="subMenu"><a href="#">后台管理</a>
+                    <ul>
+                        <li><a target="right" href="list.html">用户管理</a></li>
+                        <li><a target="right" href="add.html">用户添加</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="sidebar fleft">
+            <div class="btn"></div>
+        </div>
+
+        <!--#content -->
+        <div class="page">
+            <iframe width="100%" scrolling="auto" height="100%" frameborder="false" allowtransparency="true"
+                    style="border: medium none;" name="right" id="rightMain"></iframe>
+        </div>
+    </div>
+    <div id="footer"></div><!--#footer -->
+</div><!--#wrap -->
+</body>
+</html>

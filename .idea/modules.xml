@@ -10,6 +10,8 @@
       <module fileurl="file://$PROJECT_DIR$/day17web/day17web.iml" filepath="$PROJECT_DIR$/day17web/day17web.iml" />
       <module fileurl="file://$PROJECT_DIR$/day18case/day18case.iml" filepath="$PROJECT_DIR$/day18case/day18case.iml" />
       <module fileurl="file://$PROJECT_DIR$/day20jQuery/day20jQuery.iml" filepath="$PROJECT_DIR$/day20jQuery/day20jQuery.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day22/day22.iml" filepath="$PROJECT_DIR$/day22/day22.iml" />
+      <module fileurl="file://$PROJECT_DIR$/review/review.iml" filepath="$PROJECT_DIR$/review/review.iml" />
     </modules>
   </component>
 </project>

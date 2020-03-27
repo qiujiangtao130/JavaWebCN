@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>后台管理系统</title>
+    <link href="../images/style.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="../Css/style.css"/>
+    <script src="../Js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="../Js/bootstrap.js"></script>
+    <script type="text/javascript" src="../Js/ckform.js"></script>
+    <script type="text/javascript" src="../Js/common.js"></script>
+    <style type="text/css">
+        body {
+            background: #FFF
+        }
+    </style>
+    <script type="text/javascript">
+        function deleteUser(id) {
+            if (confirm("您确定删除该用户吗？")) {
+                $.post("../delUserServlet",{"uid":id},function (data) {
+                    if (data.flag){
+                        location.reload();
+                    }
+                },"json");
+            }
+        }
+
+        function editUserById(id) {
+            // 跳转到编辑页面 在编辑页面加载完毕后 发送异步请求获取指定id的用户信息 再回显
+            location.href = "edit.html?uid="+id;
+        }
+
+    </script>
+    <script>
+        $(function () {
+            // 页面加载完毕后发送异步请求到Servlet
+            $.get("../findAllServlet", function (data) {
+                // 解析返回来的数据
+                if (data.flag) {
+                    var tableStr = "";
+                    $(data.data).each(function () {
+                        tableStr += '<tr>\n' +
+                            '        <td>'+this.username+'</td>\n' +
+                            '        <td>'+this.address+'</td>\n' +
+                            '        <td>'+this.telephone+'</td>\n' +
+                            '        <td>'+this.remake+'</td>\n' +
+                            '        <td>'+this.department+'</td>\n' +
+                            '        <td><a href="javascript:void(0)" onclick="editUserById('+this.id+')">编辑</a>|<a href="javascript:void(0)"\n' +
+                            '                                                                                     onclick="deleteUser('+this.id+')">删除</a>\n' +
+                            '        </td>\n' +
+                            '    <tr>';
+                    });
+                    $("#ttt").append(tableStr);
+                }
+            }, "json");
+        })
+    </script>
+</head>
+<body>
+<form class="form-inline definewidth m20" action="../user" method="post">
+    <input type="hidden" name="method" value="findAll">
+    用户名称：
+    <input type="text" name="username" id="username" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
+    联系电话:
+    <input type="text" name="menuname" id="menuname" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
+    用户地址:
+    <input type="text" name="menuname" id="menuname" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
+    <button type="submit" class="btn btn-primary">查询</button>
+</form>
+<table class="table table-bordered table-hover definewidth m10" id="ttt">
+    <thead>
+    <tr>
+        <th>用户名称</th>
+        <th>用户地址</th>
+        <th>联系电话</th>
+        <th>备注</th>
+        <th>所属部门</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+
+        <!--<tr>
+            <c:forEach items="${plist }" var="p">
+        <tr>
+            <td>${p.username }</td>
+            <td>${p.address}</td>
+            <td>${p.telephone }</td>
+            <td>${p.remake }</td>
+            <td>${p.department }</td>
+            <td><a href="javascript:void(0)" onclick="editUserById('${p.id}')">编辑</a>|<a href="javascript:void(0)"
+                                                                                         onclick="deleteUser('${p.id}')">删除</a>
+            </td>
+        <tr>
+            </c:forEach>
+        </tr>-->
+</table>
+</body>
+
+</html>
