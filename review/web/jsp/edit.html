@@ -27,7 +27,7 @@
 
             // 在页面加载完毕后根据用户的id发送一个异步请求
             // 返回的User对象我们要做数据的回显
-            $.get("../findUserByUid?uid="+strings[1],function (data) {
+            $.get("../findUserByIdServlet?uid="+strings[1],function (data) {
                 if (data.flag){
                     // 查询成功我们要做数据的回显
                     // 找到用户名 设置用户名的值

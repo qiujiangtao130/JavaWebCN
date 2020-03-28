@@ -16,6 +16,14 @@ public class User implements Serializable {
     private String remake;
     private String department;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", address='" + address + '\'' +
+                ", telephone='" + telephone + '\'' +
+                '}';
+    }
 
     public Integer getId() {
         return id;

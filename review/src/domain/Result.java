@@ -3,7 +3,7 @@ package domain;
 public class Result {
     private boolean flag;
     private String msg;
-    private Object object;
+    private Object data;
 
     public Result() {
     }
@@ -13,10 +13,10 @@ public class Result {
         this.msg = msg;
     }
 
-    public Result(boolean flag, String msg, Object object) {
+    public Result(boolean flag, String msg, Object data) {
         this.flag = flag;
         this.msg = msg;
-        this.object = object;
+        this.data = data;
     }
 
     public boolean isFlag() {
@@ -35,12 +35,12 @@ public class Result {
         this.msg = msg;
     }
 
-    public Object getObject() {
-        return object;
+    public Object getData() {
+        return data;
     }
 
-    public void setObject(Object object) {
-        this.object = object;
+    public void setData(Object data) {
+        this.data = data;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class Result {
         return "Result{" +
                 "flag=" + flag +
                 ", msg='" + msg + '\'' +
-                ", object=" + object +
+                ", data=" + data +
                 '}';
     }
 }

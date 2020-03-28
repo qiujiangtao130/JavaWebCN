@@ -20,8 +20,9 @@
     <script type="text/javascript">
         function deleteUser(id) {
             if (confirm("您确定删除该用户吗？")) {
-                $.post("../delUserServlet",{"uid":id},function (data) {
+                $.post("../delServlet",{"uid":id},function (data) {
                     if (data.flag){
+                        alert(data.msg);
                         location.reload();
                     }
                 },"json");
@@ -37,10 +38,14 @@
     <script>
         $(function () {
             // 页面加载完毕后发送异步请求到Servlet
+            var tableStr = "";
             $.get("../findAllServlet", function (data) {
                 // 解析返回来的数据
+
                 if (data.flag) {
-                    var tableStr = "";
+                    // alert("2222");
+                    tableStr = "";
+                   // alert(data.msg);
                     $(data.data).each(function () {
                         tableStr += '<tr>\n' +
                             '        <td>'+this.username+'</td>\n' +
@@ -56,19 +61,62 @@
                     $("#ttt").append(tableStr);
                 }
             }, "json");
+            ////////////////////////////
+            $("#check_btn").click(function () {
+
+                $.post("../findUserByInfoServlet", {"username":$("#username").val(),"telephone":$("#telephone").val(),"address":$("#address").val()} ,function (data) {
+                    // alert("btn");
+                  $("#ttt").empty();
+                    if(data.flag){
+                        tableStr = "<thead>\n" +
+                            "    <tr>\n" +
+                            "        <th>用户名称</th>\n" +
+                            "        <th>用户地址</th>\n" +
+                            "        <th>联系电话</th>\n" +
+                            "        <th>备注</th>\n" +
+                            "        <th>所属部门</th>\n" +
+                            "        <th>操作</th>\n" +
+                            "    </tr>\n" +
+                            "    </thead>";
+                        //location.reload();
+                        //  alert(data.msg);
+                        //alert(data.data);
+                        $(data.data).each(function () {
+                            tableStr += '<tr>\n' +
+                                '        <td>'+this.username+'</td>\n' +
+                                '        <td>'+this.address+'</td>\n' +
+                                '        <td>'+this.telephone+'</td>\n' +
+                                '        <td>'+this.remake+'</td>\n' +
+                                '        <td>'+this.department+'</td>\n' +
+                                '        <td><a href="javascript:void(0)" onclick="editUserById('+this.id+')">编辑</a>|<a href="javascript:void(0)"\n' +
+                                '                                                                                     onclick="deleteUser('+this.id+')">删除</a>\n' +
+                                '        </td>\n' +
+                                '    <tr>';
+                        });
+                        $("#ttt").append(tableStr);
+                    }else{
+                        alert(data.msg);
+                    }
+                },"json");
+            });
+
         })
+
+
+
     </script>
 </head>
 <body>
-<form class="form-inline definewidth m20" action="../user" method="post">
+<form class="form-inline definewidth m20" action="" method="post">
     <input type="hidden" name="method" value="findAll">
     用户名称：
     <input type="text" name="username" id="username" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
     联系电话:
-    <input type="text" name="menuname" id="menuname" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
+    <input type="text" name="telephone" id="telephone" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
     用户地址:
-    <input type="text" name="menuname" id="menuname" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
-    <button type="submit" class="btn btn-primary">查询</button>
+    <input type="text" name="address" id="address" class="abc input-default" placeholder="" value="">&nbsp;&nbsp;
+<!--    <button type="submit" class="btn btn-primary" id="check_btn">查询</button>-->
+    <input type="button"  class="btn check" id="check_btn" value="----修改---">&nbsp;&nbsp;
 </form>
 <table class="table table-bordered table-hover definewidth m10" id="ttt">
     <thead>
